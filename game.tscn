@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://c02k1hjh33l21"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_mutkn"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tpmbm"]
+properties/0/path = NodePath(".:player_choices")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_mutkn")
+
+[node name="RockButton" type="Button" parent="."]
+offset_left = 162.0
+offset_top = 70.0
+offset_right = 214.0
+offset_bottom = 101.0
+text = "ROCK"
+
+[node name="PaperButton" type="Button" parent="."]
+offset_left = 152.0
+offset_top = 129.0
+offset_right = 228.0
+offset_bottom = 160.0
+text = "PAPER"
+
+[node name="ScissorsButton" type="Button" parent="."]
+offset_left = 150.0
+offset_top = 190.0
+offset_right = 232.0
+offset_bottom = 221.0
+text = "SCISSORS"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_tpmbm")
+
+[connection signal="button_down" from="RockButton" to="." method="_on_rock_button_button_down"]
+[connection signal="button_down" from="PaperButton" to="." method="_on_paper_button_button_down"]
+[connection signal="button_down" from="ScissorsButton" to="." method="_on_scissors_button_button_down"]
